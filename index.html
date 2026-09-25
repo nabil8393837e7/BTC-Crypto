@@ -2,133 +2,618 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>BTC Miner</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bitcoin Miner</title>
+
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <style>
 *{box-sizing:border-box}
+
 body{
-  margin:0;background:#061014;color:#eef5f3;
-  font-family:Arial,Helvetica,sans-serif;
-  min-height:100vh;
+margin:0;
+background:#061014;
+color:#eef5f3;
+font-family:Arial,sans-serif;
 }
-.app{max-width:720px;margin:auto;padding:20px 18px 105px}
-.header{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 25px}
-.logo{font-size:62px;line-height:.7;color:#35e0aa;font-weight:300}
-.brand{font-size:27px;font-weight:800;letter-spacing:.2px}
-.profile{display:flex;align-items:center;gap:12px;margin-bottom:22px}
-.avatar{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-background:#195744;border:1px solid #2d866d;font-size:27px}
-.name{font-size:21px;font-weight:700}
-.uid{font-size:14px;color:#81929b;margin-top:6px}
-.lang{margin-left:auto;font-size:16px}
-.card{background:#0d1a1f;border:1px solid #1b3035;border-radius:28px;padding:25px;margin-bottom:18px;box-shadow:0 5px 25px rgba(0,0,0,.12)}
-.label{font-size:16px;letter-spacing:2px;color:#8b9ba4}
-.balance{font-size:43px;font-weight:800;color:#ffad18;margin-top:25px}
-.unit{font-size:18px}
-.usd{color:#42dfb0;font-size:24px;margin-top:18px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.mini{min-height:205px;padding:22px;border-radius:27px;background:#0d1a1f;border:1px solid #1b3035}
-.mini-title{color:#8b9ba4;font-size:15px;letter-spacing:1px}
-.boost{display:flex;align-items:center;gap:15px;margin-top:22px}
-.icon{width:68px;height:68px;border-radius:18px;background:#123b30;border:1px solid #245b49;
-display:flex;align-items:center;justify-content:center;font-size:34px}
-.value{font-size:24px;font-weight:800;margin-top:8px}
-.sub{color:#94a5ad;font-size:15px;margin-top:6px}
-.orange{color:#ffad18}
-.green{color:#43dfb0}
-.daily{display:flex;justify-content:space-between;align-items:center;padding:12px 7px;color:#94a5ad}
-.daily b{font-size:24px;color:#ffad18}
-.price{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1b3035;padding:24px 7px 0;color:#94a5ad}
-.price-value{font-size:22px;font-weight:800;color:#eaf2ef}
-.chart{width:112px;height:50px;background:#123b30;border-radius:9px;margin-left:auto;margin-right:12px;
-display:flex;align-items:center;justify-content:center;color:#43dfb0;font-size:25px}
-.nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:calc(100% - 40px);max-width:680px;
-background:#0c1a20;border:1px solid #214047;border-radius:30px;padding:9px;display:grid;grid-template-columns:repeat(4,1fr);
-box-shadow:0 10px 30px rgba(0,0,0,.35)}
-.nav button{border:0;background:transparent;color:#8fa1aa;padding:10px 4px;border-radius:25px;font-size:12px;font-weight:700}
-.nav button.active{background:#124c3c;color:#45e0b1}
-.nav-icon{display:block;font-size:26px;margin-bottom:5px}
-@media(max-width:500px){
- .app{padding:15px 15px 105px}
- .brand{font-size:24px}.logo{font-size:54px}
- .balance{font-size:36px}.grid{gap:12px}.mini{padding:18px;min-height:190px}
- .value{font-size:20px}.chart{width:92px}
+
+.app{
+max-width:720px;
+margin:auto;
+padding:18px 16px 110px;
+}
+
+.header{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin:8px 0 24px;
+}
+
+.logo{
+font-size:58px;
+color:#39dfac;
+}
+
+.brand{
+font-size:25px;
+font-weight:800;
+}
+
+.profile{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:20px;
+}
+
+.avatar{
+width:62px;
+height:62px;
+border-radius:50%;
+background:#195744;
+border:1px solid #2b846b;
+display:grid;
+place-items:center;
+font-size:27px;
+}
+
+.name{
+font-size:20px;
+font-weight:700;
+}
+
+.uid{
+font-size:13px;
+color:#81939c;
+margin-top:5px;
+}
+
+.lang{
+margin-left:auto;
+}
+
+.card,
+.mini{
+background:#0d1a1f;
+border:1px solid #1b3035;
+border-radius:25px;
+}
+
+.card{
+padding:23px;
+margin-bottom:14px;
+}
+
+.label{
+color:#8c9ba3;
+letter-spacing:2px;
+font-size:14px;
+}
+
+.balance{
+font-size:37px;
+font-weight:800;
+color:#ffad18;
+margin-top:20px;
+}
+
+.usd{
+font-size:21px;
+color:#43dfb0;
+margin-top:13px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.mini{
+padding:19px;
+min-height:190px;
+}
+
+.title{
+color:#8c9ba3;
+font-size:13px;
+letter-spacing:1px;
+}
+
+.value{
+font-size:20px;
+font-weight:800;
+margin-top:22px;
+}
+
+.green{
+color:#43dfb0;
+}
+
+.orange{
+color:#ffad18;
+}
+
+.boost{
+display:flex;
+gap:12px;
+align-items:center;
+margin-top:20px;
+}
+
+.icon{
+width:55px;
+height:55px;
+border-radius:16px;
+background:#123b30;
+display:grid;
+place-items:center;
+font-size:28px;
+}
+
+.sub{
+color:#91a2aa;
+font-size:13px;
+margin-top:6px;
+}
+
+.daily,
+.price{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:20px 6px;
+color:#91a2aa;
+}
+
+.daily b{
+color:#ffad18;
+font-size:20px;
+}
+
+.price{
+border-top:1px solid #1b3035;
+}
+
+.price b{
+color:#eef5f3;
+font-size:19px;
+}
+
+.mining{
+margin-top:10px;
+text-align:center;
+}
+
+.mine-btn{
+width:100%;
+border:0;
+border-radius:18px;
+padding:16px;
+background:#124c3c;
+color:#45e0b1;
+font-size:17px;
+font-weight:800;
+}
+
+.status{
+font-size:13px;
+color:#91a2aa;
+margin-top:9px;
+}
+
+.nav{
+position:fixed;
+left:50%;
+bottom:15px;
+transform:translateX(-50%);
+width:calc(100% - 32px);
+max-width:680px;
+background:#0c1a20;
+border:1px solid #214047;
+border-radius:27px;
+padding:8px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+}
+
+.nav button{
+border:0;
+background:transparent;
+color:#8fa1aa;
+border-radius:22px;
+padding:7px 2px;
+font-size:10px;
+font-weight:700;
+}
+
+.nav button.active{
+background:#124c3c;
+color:#45e0b1;
+}
+
+.nav-icon{
+display:block;
+font-size:22px;
+margin-bottom:3px;
 }
 </style>
 </head>
+
 <body>
+
 <div class="app">
-  <div class="header">
-    <div class="logo">₿</div><div class="brand">BITCOIN MINER</div>
-  </div>
 
-  <div class="profile">
-    <div class="avatar" id="avatar">C</div>
-    <div>
-      <div class="name" id="name">Customer Care</div>
-      <div class="uid">UID: <span id="uid">000000000</span></div>
-    </div>
-    <div class="lang">🇬🇧 EN</div>
-  </div>
-
-  <div class="card">
-    <div class="label">BALANCE</div>
-    <div class="balance">0.00000006 <span class="unit">BTC</span></div>
-    <div class="usd">≈ $0.01 USD</div>
-  </div>
-
-  <div class="grid">
-    <div class="mini">
-      <div class="mini-title">MINING POWER</div>
-      <div class="boost">
-        <div class="icon">⚡</div>
-        <div>
-          <div class="value">Hash Boost<br>0%</div>
-          <div class="sub">Level 1</div>
-        </div>
-      </div>
-      <div class="sub">Mining Power +0%</div>
-    </div>
-
-    <div class="mini">
-      <div class="mini-title">PROFIT PER HOUR</div>
-      <div class="value orange" style="margin-top:25px">0.00004000 <span style="font-size:13px">BTC</span></div>
-      <div class="green" style="font-size:20px;margin-top:15px">≈ $3.39 USD</div>
-    </div>
-  </div>
-
-  <div class="daily">
-    <span>Estimated Daily Profit</span>
-    <span><b>0.00096000</b> BTC<br><span class="green" style="float:right">≈ $81.30 USD</span></span>
-  </div>
-
-  <div class="price">
-    <span>Bitcoin price</span>
-    <div class="chart">⌁⌁⌁</div>
-    <span class="price-value">$84,682.32<br><small style="color:#e37b88">▲▼</small></span>
-  </div>
+<div class="header">
+<div class="logo">₿</div>
+<div class="brand">BITCOIN MINER</div>
 </div>
+
+<div class="profile">
+
+<div class="avatar" id="avatar">U</div>
+
+<div>
+<div class="name" id="name">User</div>
+
+<div class="uid">
+UID: <span id="uid">000000000</span>
+</div>
+
+</div>
+
+<div class="lang">🇬🇧 EN</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="label">
+BALANCE
+</div>
+
+<div class="balance">
+<span id="balance">0.00000006</span>
+<span style="font-size:16px">BTC</span>
+</div>
+
+<div class="usd">
+≈ $<span id="balanceUsd">0.01</span> USD
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="mini">
+
+<div class="title">
+MINING POWER
+</div>
+
+<div class="boost">
+
+<div class="icon">
+⚡
+</div>
+
+<div>
+
+<div class="value">
+Hash Boost <span id="boost">0%</span>
+</div>
+
+<div class="sub">
+Level <span id="level">1</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="sub">
+Mining Power +<span id="boost2">0</span>%
+</div>
+
+</div>
+
+
+<div class="mini">
+
+<div class="title">
+PROFIT PER HOUR
+</div>
+
+<div class="value orange">
+<span id="hour">0.00004000</span> BTC
+</div>
+
+<div class="green" style="font-size:18px;margin-top:14px">
+≈ $<span id="hourUsd">3.39</span> USD
+</div>
+
+</div>
+
+</div>
+
+
+<div class="daily">
+
+<span>
+Estimated Daily Profit
+</span>
+
+<span style="text-align:right">
+
+<b>
+<span id="daily">0.00096000</span> BTC
+</b>
+
+<br>
+
+<span class="green">
+≈ $<span id="dailyUsd">81.30</span> USD
+</span>
+
+</span>
+
+</div>
+
+
+<div class="price">
+
+<span>
+Bitcoin price
+</span>
+
+<span>
+📈
+</span>
+
+<b>
+$84,682.32
+</b>
+
+</div>
+
+
+<div class="mining">
+
+<button class="mine-btn" id="mineBtn">
+⛏️ MINING ACTIVE
+</button>
+
+<div class="status" id="status">
+Earnings are calculated from elapsed time.
+</div>
+
+</div>
+
+</div>
+
 
 <div class="nav">
-  <button class="active"><span class="nav-icon">⌂</span>HOME</button>
-  <button><span class="nav-icon">☆</span>UPGRADE</button>
-  <button><span class="nav-icon">♧</span>FRIENDS</button>
-  <button><span class="nav-icon">▣</span>WITHDRAW</button>
+
+<button class="active">
+
+<span class="nav-icon">⌂</span>
+
+HOME
+
+</button>
+
+<button>
+
+<span class="nav-icon">☆</span>
+
+UPGRADE
+
+</button>
+
+<button>
+
+<span class="nav-icon">♧</span>
+
+FRIENDS
+
+</button>
+
+<button>
+
+<span class="nav-icon">▣</span>
+
+WITHDRAW
+
+</button>
+
 </div>
 
+
 <script>
+
 const tg = window.Telegram?.WebApp;
+
 if(tg){
-  tg.ready();
-  tg.expand();
-  const u=tg.initDataUnsafe?.user;
-  if(u){
-    document.getElementById("uid").textContent=u.id;
-    document.getElementById("name").textContent=(u.first_name||"User")+(u.last_name?" "+u.last_name:"");
-    document.getElementById("avatar").textContent=(u.first_name||"U").charAt(0).toUpperCase();
-  }
+
+tg.ready();
+
+tg.expand();
+
+const user = tg.initDataUnsafe?.user;
+
+if(user){
+
+document.getElementById("uid").textContent = user.id;
+
+document.getElementById("name").textContent =
+(user.first_name || "User") +
+(user.last_name ? " " + user.last_name : "");
+
+document.getElementById("avatar").textContent =
+(user.first_name || "U").charAt(0).toUpperCase();
+
 }
+
+}
+
+
+/* MINING SYSTEM */
+
+const STORAGE_KEY = "btc_miner_demo";
+
+const BTC_PRICE = 84682.32;
+
+const BASE_HOUR = 0.00004000;
+
+let data =
+JSON.parse(localStorage.getItem(STORAGE_KEY))
+||
+{
+balance:0.00000006,
+level:1,
+last:Date.now(),
+active:true
+};
+
+
+/* HASH BOOST */
+
+function getBoost(){
+
+const boosts = {
+
+1:0,
+
+2:10,
+
+3:25,
+
+4:50,
+
+5:100
+
+};
+
+return boosts[data.level] || 0;
+
+}
+
+
+/* PROFIT PER HOUR */
+
+function getHourlyProfit(){
+
+return BASE_HOUR *
+(1 + getBoost()/100);
+
+}
+
+
+/* UPDATE MINING */
+
+function updateMining(){
+
+const now = Date.now();
+
+if(data.active){
+
+const elapsed =
+(now - data.last) / 3600000;
+
+data.balance +=
+getHourlyProfit() * elapsed;
+
+}
+
+data.last = now;
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(data)
+);
+
+
+/* DISPLAY */
+
+const hourly =
+getHourlyProfit();
+
+const daily =
+hourly * 24;
+
+document.getElementById("balance").textContent =
+data.balance.toFixed(8);
+
+document.getElementById("balanceUsd").textContent =
+(data.balance * BTC_PRICE).toFixed(2);
+
+document.getElementById("boost").textContent =
+getBoost() + "%";
+
+document.getElementById("boost2").textContent =
+getBoost();
+
+document.getElementById("level").textContent =
+data.level;
+
+document.getElementById("hour").textContent =
+hourly.toFixed(8);
+
+document.getElementById("hourUsd").textContent =
+(hourly * BTC_PRICE).toFixed(2);
+
+document.getElementById("daily").textContent =
+daily.toFixed(8);
+
+document.getElementById("dailyUsd").textContent =
+(daily * BTC_PRICE).toFixed(2);
+
+if(data.active){
+
+document.getElementById("status").textContent =
+"⛏️ Mining active • balance updates automatically";
+
+document.getElementById("mineBtn").textContent =
+"⛏️ MINING ACTIVE";
+
+}else{
+
+document.getElementById("status").textContent =
+"⏸️ Mining paused";
+
+document.getElementById("mineBtn").textContent =
+"▶️ START MINING";
+
+}
+
+}
+
+
+/* START / STOP */
+
+document.getElementById("mineBtn").onclick =
+function(){
+
+data.active = !data.active;
+
+data.last = Date.now();
+
+updateMining();
+
+};
+
+
+/* RUN EVERY SECOND */
+
+updateMining();
+
+setInterval(updateMining,1000);
+
 </script>
+
 </body>
 </html>
